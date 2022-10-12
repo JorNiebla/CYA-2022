@@ -3,7 +3,7 @@
 // Grado en Ingeniería Informática
 // Asignatura: Computabilidad y Algoritmia
 // Curso: 2º
-// Práctica 1: Símbolos, alfabetos y cadenas
+// Práctica 2: Operaciones con lenguajes
 // Autor: Jorge Niebla Núñez
 // Correo: alu0101215457@ull.edu.es
 // Fecha: 04/10/2022
@@ -30,7 +30,11 @@ class Cadena {
     Cadena(Alfabeto alf, std::string cadena_data);
     Cadena(std::vector<Simbolo> data);
 
+    Alfabeto getAlf() const;
+    std::vector<Simbolo> getData() const;
+
     void concatenar(Simbolo s);
+    void concatenar(Cadena c);
     int longitud() const;
     Cadena inversa();
     std::vector<Cadena> prefijos();

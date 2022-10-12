@@ -3,7 +3,7 @@
 // Grado en Ingeniería Informática
 // Asignatura: Computabilidad y Algoritmia
 // Curso: 2º
-// Práctica 1: Símbolos, alfabetos y cadenas
+// Práctica 2: Operaciones con lenguajes
 // Autor: Jorge Niebla Núñez
 // Correo: alu0101215457@ull.edu.es
 // Fecha: 04/10/2022
@@ -41,8 +41,20 @@ Cadena::Cadena(std::vector<Simbolo> data) {
   data_ = data;
 }
 
+Alfabeto Cadena::getAlf() const {
+  return alf_;
+}
+
+std::vector<Simbolo> Cadena::getData() const {
+  return data_;
+}
+
 void Cadena::concatenar(Simbolo s) {
   data_.push_back(s);
+}
+
+void Cadena::concatenar(Cadena c) {
+  data_.insert( data_.end(), c.getData().begin(), c.getData().end());
 }
 
 int Cadena::longitud() const {
