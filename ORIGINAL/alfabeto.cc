@@ -24,6 +24,18 @@ void Alfabeto::insertar(Simbolo s) {
   data_.insert(s);
 }
 
+Alfabeto Alfabeto::uni(Alfabeto alf) {
+  std::set<Simbolo> resdata;
+  for (Simbolo s : data_) {
+    resdata.insert(s);
+  }
+  for (Simbolo s : alf.getConjunto()) {
+    resdata.insert(s);
+  }
+
+  return Alfabeto(resdata);
+}
+
 std::set<Simbolo> Alfabeto::getConjunto() {
   return data_;
 }

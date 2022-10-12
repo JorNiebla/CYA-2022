@@ -28,6 +28,7 @@ class Cadena {
   public:
     Cadena();
     Cadena(Alfabeto alf, std::string cadena_data);
+    Cadena(Alfabeto alf, std::vector<Simbolo> data);
     Cadena(std::vector<Simbolo> data);
 
     Alfabeto getAlf() const;
@@ -35,6 +36,7 @@ class Cadena {
 
     void concatenar(Simbolo s);
     void concatenar(Cadena c);
+    Cadena concatenada(Cadena c);
     int longitud() const;
     Cadena inversa();
     std::vector<Cadena> prefijos();

@@ -41,6 +41,11 @@ Cadena::Cadena(std::vector<Simbolo> data) {
   data_ = data;
 }
 
+Cadena::Cadena(Alfabeto alf, std::vector<Simbolo> data) {
+  alf_ = alf;
+  data_ = data;
+}
+
 Alfabeto Cadena::getAlf() const {
   return alf_;
 }
@@ -54,7 +59,14 @@ void Cadena::concatenar(Simbolo s) {
 }
 
 void Cadena::concatenar(Cadena c) {
-  data_.insert( data_.end(), c.getData().begin(), c.getData().end());
+  data_.insert(data_.end(), c.getData().begin(), c.getData().end());
+}
+
+Cadena Cadena::concatenada(Cadena c) {
+  std::vector<Simbolo> resdata = data_;
+  resdata.insert(resdata.end(), c.getData().begin(), c.getData().end());
+  Alfabeto resalf = alf_.uni(c.getAlf());
+  return Cadena(resalf,resdata);
 }
 
 int Cadena::longitud() const {

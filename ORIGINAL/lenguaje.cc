@@ -27,19 +27,12 @@ std::vector<Cadena> Lenguaje::getData() const{
 }
 
 Lenguaje Lenguaje::concatenar(Lenguaje l) {
-  Alfabeto resalf;
-  for (Simbolo s : alf_.getConjunto()) {
-    resalf.insertar(s);
-  }
-  for (Simbolo s : l.getAlf().getConjunto()) {
-    resalf.insertar(s);
-  }
+  Alfabeto resalf = alf_.uni(l.getAlf());
 
   std::vector<Cadena> resdata;
   for (Cadena c1 : data_) {
     for (Cadena c2 : l.data_) {
-      c1.concatenar(c2);
-      resdata.push_back(c1);
+      resdata.push_back(c1.concatenada(c2));
     }
   }
 
@@ -47,11 +40,15 @@ Lenguaje Lenguaje::concatenar(Lenguaje l) {
 }
 
 Lenguaje Lenguaje::uni(Lenguaje l) {
-  
+  Alfabeto resalf = alf_.uni(l.getAlf());
+  std::vector<Cadena> resdata = data_;
+  resdata.insert(resdata.end(), l.getData().begin(), l.getData().end());
+
+  return Lenguaje(resalf,resdata);
 }
 
 Lenguaje Lenguaje::interseccion(Lenguaje l) {
-
+  
 }
 
 Lenguaje Lenguaje::diferencia(Lenguaje l) {

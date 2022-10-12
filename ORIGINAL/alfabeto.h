@@ -26,6 +26,7 @@ class Alfabeto {
     Alfabeto(std::set<Simbolo> data);
     
     void insertar(Simbolo s);
+    Alfabeto uni(Alfabeto alf);
     std::set<Simbolo> getConjunto();
 };
 
