@@ -7,7 +7,7 @@
 // Autor: Jorge Niebla Núñez
 // Correo: alu0101215457@ull.edu.es
 // Fecha: 04/10/2022
-// Archivo simbolo.h: Alias para Simbolo
+// Archivo lenguaje.h: Clase Lenguaje
 // Contiene la clase Lenguaje
 
 #ifndef LENGUAJE_H

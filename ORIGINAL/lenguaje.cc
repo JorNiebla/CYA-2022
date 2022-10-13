@@ -1,3 +1,15 @@
+// Universidad de La Laguna
+// Escuela Superior de Ingeniería y Tecnología
+// Grado en Ingeniería Informática
+// Asignatura: Computabilidad y Algoritmia
+// Curso: 2º
+// Práctica 2: Operaciones con lenguajes
+// Autor: Jorge Niebla Núñez
+// Correo: alu0101215457@ull.edu.es
+// Fecha: 04/10/2022
+// Archivo lenguaje.cc: declaraciones de la clase Lenguaje.
+// Contiene todos los métodos de la clase Lenguaje declarados.
+
 #include "lenguaje.h"
 
 Lenguaje::Lenguaje() {
@@ -32,7 +44,6 @@ Lenguaje Lenguaje::concatenar(Lenguaje l) {
   Alfabeto resalf = alf_.uni(l.getAlf());
 
   if (data_.size() == 1 || l.data_.size() == 1) {
-    // std::cout << data_[0] << std::endl;
     if (data_[0].getData()[0] == "&")
       return l;
     else if (l.data_[0].getData()[0] == "&")
