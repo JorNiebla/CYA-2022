@@ -1,5 +1,0 @@
-{ X a b c } { aaXX aabcXX acabXX abbccXX abcaXX abcabcXX abccabXX abcbbccXX cabaXX cababcXX cabcabXX cabbbccXX bbccaXX bbccabcXX bbcccabXX bbccbbccXX }
-{ X a } { aaXX aaaXX aaaaXX aaaXX aaaaXX aaaaaXX aaaaXX aaaaaXX aaaaaaXX }
-{ a b } { }
-{ X } { XX }
-{ 0 1 X } { 00XX 01XX 000XX 001XX 010XX 011XX 10XX 11XX 100XX 101XX 110XX 111XX 000XX 001XX 0000XX 0001XX 0010XX 0011XX 010XX 011XX 0100XX 0101XX 0110XX 0111XX 100XX 101XX 1000XX 1001XX 1010XX 1011XX 110XX 111XX 1100XX 1101XX 1110XX 1111XX }
