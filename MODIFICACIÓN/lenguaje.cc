@@ -96,6 +96,9 @@ Lenguaje Lenguaje::inversa() {
 }
 
 Lenguaje Lenguaje::potencia(int n) {
+  if (data_.size() == 0) {
+    return *this;
+  }
   if (n == 0) {
     Cadena cVacia;
     cVacia.concatenar("&");

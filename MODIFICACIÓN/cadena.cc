@@ -3,7 +3,7 @@
 // Grado en Ingeniería Informática
 // Asignatura: Computabilidad y Algoritmia
 // Curso: 2º
-// Práctica 1: Símbolos, alfabetos y cadenas
+// Práctica 2: Operaciones con lenguajes
 // Autor: Jorge Niebla Núñez
 // Correo: alu0101215457@ull.edu.es
 // Fecha: 04/10/2022
@@ -16,10 +16,6 @@ Cadena::Cadena() {
   data_ = std::vector<Simbolo>();
 }
 
-Cadena::Cadena(std::vector<Simbolo> data) {
-  data_ = data;
-}
-
 Cadena::Cadena(Alfabeto alf, std::string cadena_data) {
   data_ = std::vector<Simbolo>();
   alf_ = alf;
@@ -27,6 +23,11 @@ Cadena::Cadena(Alfabeto alf, std::string cadena_data) {
   while(cadena_data!="" && !imposible) {
     int pos = 1;
     Simbolo s = cadena_data.substr(0,pos);
+    if (s == "&") {
+      concatenar(s);
+      cadena_data.erase(0,cadena_data.find(s)+s.length());
+      continue;
+    }
     while(alf.getConjunto().count(s) == 0) {
       if (pos == cadena_data.length())
         imposible = true;
@@ -41,8 +42,36 @@ Cadena::Cadena(Alfabeto alf, std::string cadena_data) {
     data_ = std::vector<Simbolo>();
 }
 
+Cadena::Cadena(std::vector<Simbolo> data) {
+  data_ = data;
+}
+
+Cadena::Cadena(Alfabeto alf, std::vector<Simbolo> data) {
+  alf_ = alf;
+  data_ = data;
+}
+
+Alfabeto Cadena::getAlf() const {
+  return alf_;
+}
+
+std::vector<Simbolo> Cadena::getData() const {
+  return data_;
+}
+
 void Cadena::concatenar(Simbolo s) {
   data_.push_back(s);
+}
+
+void Cadena::concatenar(Cadena c) {
+  data_.insert(data_.end(), c.getData().begin(), c.getData().end());
+}
+
+Cadena Cadena::concatenada(Cadena c) {
+  std::vector<Simbolo> resdata = data_;
+  resdata.insert(resdata.end(), c.data_.begin(), c.data_.end());
+  Alfabeto resalf = alf_.uni(c.alf_);
+  return Cadena(resalf,resdata);
 }
 
 int Cadena::longitud() const {
@@ -124,26 +153,6 @@ std::vector<Cadena> Cadena::subcadenas() {
     }
   }
   return resultado;
-}
-
-std::vector<Cadena> Cadena::prefijosMenosSufijos() {
-  auto pref = prefijos();
-  auto suf = sufijos();
-  std::vector<Cadena> temp;
-
-  for (int i = 0; i < pref.size(); i++) {
-    bool repetido = false;
-    for (int j = 0; j < suf.size(); j++) {
-      if (pref[i] == suf[j]) {
-        repetido = true;
-        break;
-      }
-    }
-    if (!repetido) {
-      temp.push_back(pref[i]);
-    }
-  }
-  return temp;
 }
 
 //Sobrecarga para simplificar la salida

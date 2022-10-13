@@ -36,6 +36,6 @@ Alfabeto Alfabeto::uni(Alfabeto alf) {
   return Alfabeto(resdata);
 }
 
-std::set<Simbolo> Alfabeto::getConjunto() {
+std::set<Simbolo> Alfabeto::getConjunto() const {
   return data_;
 }

@@ -23,6 +23,11 @@ Cadena::Cadena(Alfabeto alf, std::string cadena_data) {
   while(cadena_data!="" && !imposible) {
     int pos = 1;
     Simbolo s = cadena_data.substr(0,pos);
+    if (s == "&") {
+      concatenar(s);
+      cadena_data.erase(0,cadena_data.find(s)+s.length());
+      continue;
+    }
     while(alf.getConjunto().count(s) == 0) {
       if (pos == cadena_data.length())
         imposible = true;
@@ -64,8 +69,8 @@ void Cadena::concatenar(Cadena c) {
 
 Cadena Cadena::concatenada(Cadena c) {
   std::vector<Simbolo> resdata = data_;
-  resdata.insert(resdata.end(), c.getData().begin(), c.getData().end());
-  Alfabeto resalf = alf_.uni(c.getAlf());
+  resdata.insert(resdata.end(), c.data_.begin(), c.data_.end());
+  Alfabeto resalf = alf_.uni(c.alf_);
   return Cadena(resalf,resdata);
 }
 

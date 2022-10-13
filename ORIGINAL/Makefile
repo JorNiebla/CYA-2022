@@ -1,10 +1,7 @@
-languages: cya-P02-p02_Languages.cc alfabeto.o cadena.o
-	g++ -o p02_languages *.o cya-P01-Strings.cc -I.
+languages: cya-P02-Languages.cc alfabeto.o cadena.o lenguaje.o
+	g++ -o p02_languages *.o cya-P02-Languages.cc -I.
 
 all: languages
-
-simbolo.o: simbolo.cc
-	g++ -c simbolo.cc -o simbolo.o
 
 alfabeto.o: alfabeto.cc
 	g++ -c alfabeto.cc -o alfabeto.o

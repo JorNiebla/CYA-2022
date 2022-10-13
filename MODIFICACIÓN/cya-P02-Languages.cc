@@ -36,10 +36,10 @@ int main(int argc, char **argv) {
     << "se debe utilizar la misma cantidad de lenguajes en ambos ficheros de entrada.";
     return 0;
   }
-  if (argc != 5) {
+  if (argc != 6) {
     std::cout 
     << "No hubo la cantidad de parametros esperados, ejecuta el programa de la forma\n"
-    << "./p02_languages filein1.txt filein2.txt fileout.txt opcode\n";
+    << "./p02_languages filein1.txt filein2.txt fileout.txt opcode cadena\n";
     return 0;
   }
   
@@ -72,26 +72,36 @@ int main(int argc, char **argv) {
       std::stringstream f2l(linea1);
       f2l >> l2;
 
-      // std::cout << l1 << std::endl;
+      std::string rawcadena = argv[5];
+
+      Alfabeto alf;
+      for (char s : rawcadena) {
+        Simbolo sim = Simbolo(1,s);
+        alf.insertar(sim);
+      }
+      Cadena c(alf,rawcadena);
+      std::vector<Cadena> l3data;
+      l3data.push_back(c);
+      Lenguaje l3(alf,l3data);
 
       switch (opcode) {
       case 1: //Concatenación
-        fileout << l1.concatenar(l2);
+        fileout << l1.concatenar(l2).concatenar(l3);
         break;
       case 2: //Unión
-        fileout << l1.uni(l2);
+        fileout << l1.uni(l2).concatenar(l3);
         break;
       case 3: //Intersección
-        fileout << l1.interseccion(l2);
+        fileout << l1.interseccion(l2).concatenar(l3);
         break;
       case 4: //Diferencia
-        fileout << l1.diferencia(l2);
+        fileout << l1.diferencia(l2).concatenar(l3);
         break;
       case 5: //Inversa
-        fileout << l1.inversa();
+        fileout << l1.inversa().concatenar(l3);
         break;
       case 6: { //Potencia 
-        fileout << l1.potencia(n);
+        fileout << l1.potencia(n).concatenar(l3);
         break;
         }
       default:

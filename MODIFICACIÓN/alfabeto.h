@@ -3,7 +3,7 @@
 // Grado en Ingeniería Informática
 // Asignatura: Computabilidad y Algoritmia
 // Curso: 2º
-// Práctica 1: Símbolos, alfabetos y cadenas
+// Práctica 2: Operaciones con lenguajes
 // Autor: Jorge Niebla Núñez
 // Correo: alu0101215457@ull.edu.es
 // Fecha: 04/10/2022
@@ -26,9 +26,8 @@ class Alfabeto {
     Alfabeto(std::set<Simbolo> data);
     
     void insertar(Simbolo s);
-    std::set<Simbolo> getConjunto();
-    // Cadena pertenece(std::string cadena_data);
-
+    Alfabeto uni(Alfabeto alf);
+    std::set<Simbolo> getConjunto() const;
 };
 
 #endif

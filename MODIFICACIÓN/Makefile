@@ -1,16 +1,16 @@
-strings: cya-P01-Strings.cc alfabeto.o cadena.o
-	g++ -o p01_strings *.o cya-P01-Strings.cc -I.
+languages: cya-P02-Languages.cc alfabeto.o cadena.o lenguaje.o
+	g++ -o p02_languages *.o cya-P02-Languages.cc -I.
 
-all: strings
-
-simbolo.o: simbolo.cc
-	g++ -c simbolo.cc -o simbolo.o
+all: languages
 
 alfabeto.o: alfabeto.cc
 	g++ -c alfabeto.cc -o alfabeto.o
 
 cadena.o: cadena.cc
 	g++ -c cadena.cc -o cadena.o
+
+lenguaje.o: lenguaje.cc
+	g++ -c lenguaje.cc -o lenguaje.o
 
 doc:
 	doxygen
@@ -19,5 +19,5 @@ doc:
 
 clean:
 	rm -f *.o
-	rm -f p01_strings
+	rm -f p02_languages
 	rm -f fileout*.txt
