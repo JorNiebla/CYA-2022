@@ -22,17 +22,16 @@
 
 class Lenguaje {
   private:
-    std::vector<Cadena> data_;
+    std::set<Cadena> data_;
     Alfabeto alf_;
 
   public:
     Lenguaje();
     Lenguaje(Alfabeto alf);
-    Lenguaje(Alfabeto alf, std::vector<Cadena> data);
-    Lenguaje(std::vector<Simbolo> data);
+    Lenguaje(Alfabeto alf, std::set<Cadena> data);
 
     Alfabeto getAlf() const;
-    std::vector<Cadena> getData() const;
+    std::set<Cadena> getData() const;
 
     Lenguaje concatenar(Lenguaje l);
     Lenguaje uni(Lenguaje l);
