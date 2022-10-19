@@ -3,10 +3,10 @@
 // Grado en Ingeniería Informática
 // Asignatura: Computabilidad y Algoritmia
 // Curso: 2º
-// Práctica 2: Operaciones con lenguajes
+// Práctica 3: Calculadora de lenguajes formales
 // Autor: Jorge Niebla Núñez
 // Correo: alu0101215457@ull.edu.es
-// Fecha: 04/10/2022
+// Fecha: 16/11/2022
 // Archivo lenguaje.h: Clase Lenguaje
 // Contiene la clase Lenguaje
 
@@ -16,33 +16,36 @@
 #include "cadena.h"
 #include "alfabeto.h"
 
-#include <vector>
 #include <iostream>
 #include <set>
 
 class Lenguaje {
   private:
-    std::vector<Cadena> data_;
+    std::set<Cadena> data_;
     Alfabeto alf_;
 
   public:
     Lenguaje();
     Lenguaje(Alfabeto alf);
-    Lenguaje(Alfabeto alf, std::vector<Cadena> data);
-    Lenguaje(std::vector<Simbolo> data);
+    Lenguaje(Alfabeto alf, std::set<Cadena> data);
 
     Alfabeto getAlf() const;
-    std::vector<Cadena> getData() const;
+    std::set<Cadena> getData() const;
 
-    Lenguaje concatenar(Lenguaje l);
-    Lenguaje uni(Lenguaje l);
-    Lenguaje interseccion(Lenguaje l);
-    Lenguaje diferencia(Lenguaje l);
-    Lenguaje inversa();
-    Lenguaje potencia(int n);
+    Lenguaje concatenar(Lenguaje l) const;
+    Lenguaje uni(Lenguaje l) const;
+    Lenguaje interseccion(Lenguaje l) const;
+    Lenguaje diferencia(Lenguaje l) const;
+    Lenguaje inversa() const;
+    Lenguaje potencia(int n) const;
 
-    bool operator==(const Lenguaje& l) const;
-    bool operator<(const Lenguaje& l) const;
+    Lenguaje operator+(const Lenguaje& l) const;
+    Lenguaje operator|(const Lenguaje& l) const;
+    Lenguaje operator^(const Lenguaje& l) const;
+    Lenguaje operator-(const Lenguaje& l) const;
+    Lenguaje operator!() const;
+    Lenguaje operator*(const int& n) const;
+
     friend std::ostream& operator<<(std::ostream& os, const Lenguaje& l);
     friend std::istream& operator>>(std::istream& is, Lenguaje& l);
 

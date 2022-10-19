@@ -3,10 +3,10 @@
 // Grado en Ingeniería Informática
 // Asignatura: Computabilidad y Algoritmia
 // Curso: 2º
-// Práctica 2: Operaciones con lenguajes
+// Práctica 3: Calculadora de lenguajes formales
 // Autor: Jorge Niebla Núñez
 // Correo: alu0101215457@ull.edu.es
-// Fecha: 04/10/2022
+// Fecha: 16/11/2022
 // Archivo cadena.h: estructura y declaraciones de la clase Cadena.
 // Contiene la clase Cadena y sus definiciones.
 
@@ -18,7 +18,6 @@
 
 #include <vector>
 #include <iostream>
-#include <set>
 
 class Cadena {
   private:

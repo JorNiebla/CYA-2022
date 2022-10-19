@@ -3,10 +3,10 @@
 // Grado en Ingeniería Informática
 // Asignatura: Computabilidad y Algoritmia
 // Curso: 2º
-// Práctica 2: Operaciones con lenguajes
+// Práctica 3: Calculadora de lenguajes formales
 // Autor: Jorge Niebla Núñez
 // Correo: alu0101215457@ull.edu.es
-// Fecha: 04/10/2022
+// Fecha: 16/11/2022
 // Archivo alfabeto.cc: declaraciones de la clase Alfabeto.
 // Contiene todos los métodos de la clase Alfabeto declarados.
 
@@ -21,10 +21,11 @@ Alfabeto::Alfabeto(std::set<Simbolo> data) {
 }
 
 void Alfabeto::insertar(Simbolo s) {
-  data_.insert(s);
+  if (s != "&")
+    data_.insert(s);
 }
 
-Alfabeto Alfabeto::uni(Alfabeto alf) {
+Alfabeto Alfabeto::uni(Alfabeto alf) const {
   std::set<Simbolo> resdata;
   for (Simbolo s : data_) {
     resdata.insert(s);

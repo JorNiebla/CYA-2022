@@ -3,10 +3,10 @@
 // Grado en Ingeniería Informática
 // Asignatura: Computabilidad y Algoritmia
 // Curso: 2º
-// Práctica 2: Operaciones con lenguajes
+// Práctica 3: Calculadora de lenguajes formales
 // Autor: Jorge Niebla Núñez
 // Correo: alu0101215457@ull.edu.es
-// Fecha: 04/10/2022
+// Fecha: 16/11/2022
 // Archivo cadena.cc: declaraciones de la clase Cadena.
 // Contiene todos los métodos de la clase Cadena declarados.
 
@@ -14,6 +14,16 @@
 
 Cadena::Cadena() {
   data_ = std::vector<Simbolo>();
+}
+
+Cadena::Cadena(std::string cadena_data){
+  data_ = std::vector<Simbolo>();
+  alf_ = Alfabeto();
+  for (auto c : cadena_data) {
+    Simbolo s = Simbolo(1,c);
+    alf_.insertar(s);
+    data_.push_back(s);
+  }
 }
 
 Cadena::Cadena(Alfabeto alf, std::string cadena_data) {
