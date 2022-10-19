@@ -27,6 +27,7 @@ class Cadena {
 
   public:
     Cadena();
+    Cadena(std::string cadena_data);
     Cadena(Alfabeto alf, std::string cadena_data);
     Cadena(Alfabeto alf, std::vector<Simbolo> data);
     Cadena(std::vector<Simbolo> data);

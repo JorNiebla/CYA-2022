@@ -1,10 +1,13 @@
-languages: cya-P02-Languages.cc alfabeto.o cadena.o lenguaje.o
-	g++ -o p02_languages *.o cya-P02-Languages.cc -I.
+languages: cya-P03-Calculator.cc alfabeto.o cadena.o lenguaje.o calculadora.o
+	g++ -o p03_calculator *.o cya-P03-Calculator.cc -I.
 
 all: languages
 
 alfabeto.o: alfabeto.cc
 	g++ -c alfabeto.cc -o alfabeto.o
+
+calculadora.o: calculadora.cc
+	g++ -c calculadora.cc -o calculadora.o
 
 cadena.o: cadena.cc
 	g++ -c cadena.cc -o cadena.o
@@ -19,5 +22,5 @@ doc:
 
 clean:
 	rm -f *.o
-	rm -f p02_languages
+	rm -f p03_calculator
 	rm -f fileout*.txt

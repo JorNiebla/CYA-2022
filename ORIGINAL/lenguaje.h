@@ -33,15 +33,20 @@ class Lenguaje {
     Alfabeto getAlf() const;
     std::set<Cadena> getData() const;
 
-    Lenguaje concatenar(Lenguaje l);
-    Lenguaje uni(Lenguaje l);
-    Lenguaje interseccion(Lenguaje l);
-    Lenguaje diferencia(Lenguaje l);
-    Lenguaje inversa();
-    Lenguaje potencia(int n);
+    Lenguaje concatenar(Lenguaje l) const;
+    Lenguaje uni(Lenguaje l) const;
+    Lenguaje interseccion(Lenguaje l) const;
+    Lenguaje diferencia(Lenguaje l) const;
+    Lenguaje inversa() const;
+    Lenguaje potencia(int n) const;
 
-    bool operator==(const Lenguaje& l) const;
-    bool operator<(const Lenguaje& l) const;
+    Lenguaje operator+(const Lenguaje& l) const;
+    Lenguaje operator|(const Lenguaje& l) const;
+    Lenguaje operator^(const Lenguaje& l) const;
+    Lenguaje operator-(const Lenguaje& l) const;
+    Lenguaje operator!() const;
+    Lenguaje operator*(const int& n) const;
+
     friend std::ostream& operator<<(std::ostream& os, const Lenguaje& l);
     friend std::istream& operator>>(std::istream& is, Lenguaje& l);
 

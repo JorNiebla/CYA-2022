@@ -21,10 +21,11 @@ Alfabeto::Alfabeto(std::set<Simbolo> data) {
 }
 
 void Alfabeto::insertar(Simbolo s) {
-  data_.insert(s);
+  if (s != "&")
+    data_.insert(s);
 }
 
-Alfabeto Alfabeto::uni(Alfabeto alf) {
+Alfabeto Alfabeto::uni(Alfabeto alf) const {
   std::set<Simbolo> resdata;
   for (Simbolo s : data_) {
     resdata.insert(s);

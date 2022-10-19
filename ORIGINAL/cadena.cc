@@ -16,6 +16,16 @@ Cadena::Cadena() {
   data_ = std::vector<Simbolo>();
 }
 
+Cadena::Cadena(std::string cadena_data){
+  data_ = std::vector<Simbolo>();
+  alf_ = Alfabeto();
+  for (auto c : cadena_data) {
+    Simbolo s = Simbolo(1,c);
+    alf_.insertar(s);
+    data_.push_back(s);
+  }
+}
+
 Cadena::Cadena(Alfabeto alf, std::string cadena_data) {
   data_ = std::vector<Simbolo>();
   alf_ = alf;
