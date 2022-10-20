@@ -78,6 +78,8 @@ void Cadena::concatenar(Cadena c) {
 }
 
 Cadena Cadena::concatenada(Cadena c) {
+  if (c.data_[0] == "&") return *this;
+  if (data_[0] == "&") return c;
   std::vector<Simbolo> resdata = data_;
   resdata.insert(resdata.end(), c.data_.begin(), c.data_.end());
   Alfabeto resalf = alf_.uni(c.alf_);
@@ -115,7 +117,7 @@ std::vector<Cadena> Cadena::prefijos() {
   return temp;
 }
 
-//Rec>etrocede hasta el inicio, creando una nueva cadena en cada pasada.
+//Retrocede hasta el inicio, creando una nueva cadena en cada pasada.
 std::vector<Cadena> Cadena::sufijos() {
   Cadena cVacia;
   cVacia.concatenar("&");
