@@ -52,7 +52,7 @@ void Calculadora::leerVariable(std::string in) {
   }
 
   Lenguaje l(alf,data);
-  variables_.emplace(name,l);
+  variables_[name] = l;
 }
 
 Lenguaje Calculadora::calcular(std::string in) {
@@ -65,22 +65,31 @@ Lenguaje Calculadora::calcular(std::string in) {
   while (std::getline(s,op,' ')) { //Leo espacio a espacio la entrada dada
     bool number = true;
     if (op_.find(op[0]) == op_.end()) { //No es una operación
+      //Compruebo si la cadena está compuesta por todo números
       for (auto c : op) {
           if (!std::isdigit(c)) {
             number = false;
             break;
           }
       }
-      if (number) {
-        potencias.push(std::stoi(op)); //Si es un numero lo guardo en pila de potencias
-      } else {
-        pila.push(variables_.at(op));
+      if (number) { //Si es un número lo guardo en pila de potencias
+        potencias.push(std::stoi(op)); 
+      } else {  //Si no es un número debe ser un lenguaje
+        try {
+          pila.push(variables_.at(op));
+        } catch(const std::out_of_range&) {
+          std::cerr << "ERROR! Se ha utilizado una variable no declarada: " << std::endl;
+          return Lenguaje();
+        }
       }
     } else { //Es una operación
       Lenguaje l1 = pila.top();
       pila.pop();
-      Lenguaje l2 = pila.top();
-      pila.pop();
+      Lenguaje l2;
+      if (op[0] != '*' && op[0] != '!') {
+        l2 = pila.top();
+        pila.pop();
+      }
       switch (op[0]) {
       case '+':
         pila.push(l1 + l2);

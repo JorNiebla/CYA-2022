@@ -14,6 +14,7 @@
 // con simbolos y una cadena por linea o una cadena (que se dividiría en caracteres = simbolo)
 
 #include "calculadora.h"
+
 #include <string>
 #include <iostream>
 #include <fstream>
@@ -22,15 +23,21 @@ int main(int argc, char **argv) {
 
   if (argc > 1 && std::string(argv[1]) == "--help") {
     std::cout 
-    << "Para utilizar este programa se tiene que ejecutar de la siguiente forma:"
+    << "Para utilizar este programa se tiene que ejecutar de la siguiente forma:\n"
     << "./p03_calculator filein.txt\n"
-    << "Siendo filein.txt el fichero que contiene los lenguajes y operaciones\n";
+    << "Siendo filein.txt el fichero que contiene los lenguajes y operaciones.\n"
+    << "Para hacer declaraciones de lenguajes en el fichero se tiene que hacer\n"
+    << "de la siguiente manera:\n"
+    << "L1 = {0, 1, 110, 100}\n"
+    << "Donde L1 es el nombre del lenguaje (no puede ser solo dígitos) y dentro\n"
+    << "de las llaves estarían las cadenas separadas por comas (se asume cada \n"
+    << "caracter que compone la cadena como un símbolo)." << std::endl;
     return 0;
   }
   if (argc != 2) {
     std::cout 
-    << "No hubo la cantidad de parametros esperados, ejecuta el programa de la forma\n"
-    << "./p03_calculator filein.txt\n";
+    << "No hubo la cantidad de parametros esperados, ejecuta el programa de la forma:\n"
+    << "./p03_calculator filein.txt" << std::endl;
     return 0;
   }
 
@@ -38,12 +45,21 @@ int main(int argc, char **argv) {
   if (filein.is_open()) {
     std::string linea;
     Calculadora c;
-    while (std::getline(filein,linea)) {                //Lee todas las lineas del fichero 1 a 1.
-      std::cout << "Lee esta linea: " << linea << std::endl;
+    while (std::getline(filein,linea)) { //Lee todas las lineas del fichero 1 a 1.
+      std::cout << "Lee esta línea del fichero: " << linea << std::endl;
+      c.leerEntrada(linea);
+    }
+    std::cout 
+    << "-------------------------------------------\n"
+    << "Entrada interactiva, pulse \"q\" para salir\n" 
+    << "-------------------------------------------" 
+    << std::endl;
+    while (std::getline(std::cin,linea)) {
+      if (linea == "q") break;
       c.leerEntrada(linea);
     }
   } else {
-    std::cout << "Hubo un error abriendo el archivo\n";
+    std::cout << "Hubo un error abriendo el archivo" << std::endl;
   }
 
   return 0;

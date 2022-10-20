@@ -50,7 +50,6 @@ Lenguaje Lenguaje::concatenar(Lenguaje l) const {
       resdata.insert(c1.concatenada(c2));
     }
   }
-
   return Lenguaje(resalf, resdata);
 }
 
