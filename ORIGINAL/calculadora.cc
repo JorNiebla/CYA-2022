@@ -52,7 +52,7 @@ void Calculadora::leerVariable(std::string in) {
   }
 
   Lenguaje l(alf,data);
-  variables_.emplace(name,l);
+  variables_[name] = l;
 }
 
 Lenguaje Calculadora::calcular(std::string in) {
@@ -86,7 +86,7 @@ Lenguaje Calculadora::calcular(std::string in) {
       Lenguaje l1 = pila.top();
       pila.pop();
       Lenguaje l2;
-      if (op[0] != '*') {
+      if (op[0] != '*' && op[0] != '!') {
         l2 = pila.top();
         pila.pop();
       }
