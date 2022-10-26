@@ -30,6 +30,7 @@
 *.exe
 *.out
 *.app
+p0*
 
 #Vscode
 .vscode/*

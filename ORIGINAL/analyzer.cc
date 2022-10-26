@@ -81,7 +81,7 @@ void Analyzer::analyzeFile(std::istream& input) {
 
 std::ostream& operator<<(std::ostream& os, const Analyzer& ana) {
   os << "PROGRAM: " << ana.filename_ << std::endl;
-  if (std::get<0>(ana.comments_[0]) == 1) {
+  if (!ana.comments_.empty() && std::get<0>(ana.comments_[0]) == 1) {
     os << "DESCRIPTION:\n" << std::get<2>(ana.comments_[0]) << std::endl;
   }
   os << "\nVARIABLES:\n";

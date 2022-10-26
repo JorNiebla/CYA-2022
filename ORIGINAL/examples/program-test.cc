@@ -11,7 +11,6 @@
 
 #include <iostream>
 #include <string>
-/*holaaa*/
 class Image {
  public:
   Image(const std::string& file_name);
