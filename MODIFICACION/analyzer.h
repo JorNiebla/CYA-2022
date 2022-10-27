@@ -16,6 +16,9 @@ class Analyzer {
     bool main_;
     std::vector<std::tuple<int,int,std::string>> comments_;
     bool activecomment_;
+    std::string codewithoutfor_;
+    bool activefor_;
+    bool activeform_;
 
     void searchvariable(std::string linea, int n);
     void searchstatement(std::string linea, int n);
@@ -26,6 +29,7 @@ class Analyzer {
     Analyzer();
     void analyzeFile(std::string filename); //Versión en la que se le da el nombre del fichero
     void analyzeFile(std::istream& input); //Versión por stream, incapaz de deducir filename_
+    void printcopy(std::ostream& output);
 
     friend std::ostream& operator<<(std::ostream& os, const Analyzer& ana);
     friend std::istream& operator>>(std::istream& is, const Analyzer& ana);
