@@ -1,14 +1,14 @@
 // Universidad de La Laguna
 // Escuela Superior de Ingeniería y Tecnología
 // Grado en Ingeniería Informática
-// Computabilidad y Algoritmia
-// 2º de Carrera
-// Práctica 8. NFA
-// Referencia:
-// https://campusingenieriaytecnologia.ull.es/mod/assign/view.php?id=273855
+// Asignatura: Computabilidad y Algoritmia
+// Curso: 2º
+// Práctica 6: Simulación de autómatas finitos
 // Autor: Jorge Niebla Núñez
-// Contact: alu0101215457@ull.edu.es
-// Archivo actual: Clase FFA .h */
+// Correo: alu0101215457@ull.edu.es
+// Fecha: 09/11/2022
+// Archivo nfa.cc: Implementación de la clase nfa.
+// Contiene las definiciones de los metodos de la clase NFA
 
 #include "../include/nfa.h"
 
@@ -34,7 +34,6 @@ NFA::NFA(const std::string& nfafile) {
   initial_state_ = &states_[std::stoi(linea)];
 
   // Resto de líneas, estados y sus definiciones
-  int statecounter = 0;
   while (std::getline(nfainput, linea)) {
     std::stringstream ss(linea);
     std::string data;
@@ -59,7 +58,6 @@ NFA::NFA(const std::string& nfafile) {
 }
 
 std::string NFA::ProcessInput(const std::string &input) {
-
   Cadena entrada(alf_, input);
 
   std::queue<int> cola;
@@ -106,18 +104,12 @@ std::string NFA::ProcessInput(const std::string &input) {
   return "Rejected";
 }
 
-void NFA::CheckEpsilon(Estado &q, std::queue<int> &states)
-{
-  for (Transicion t : q.GetTransi())
-  {
-    if (t.IsEpsilon())
-    {
+
+void NFA::CheckEpsilon(Estado &q, std::queue<int> &states) {
+  for (Transicion t : q.GetTransi()) {
+    if (t.IsEpsilon()) {
       states.push(t.GetDest()->GetId());
       CheckEpsilon(*t.GetDest(), states);
     }
   }
-}
-
-bool NFA::isStringValid(const std::string &stringtocheck) const {
-  return true;
 }

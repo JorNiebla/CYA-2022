@@ -1,14 +1,14 @@
 // Universidad de La Laguna
 // Escuela Superior de Ingeniería y Tecnología
 // Grado en Ingeniería Informática
-// Computabilidad y Algoritmia
-// 2º de Carrera
-// Práctica 8. NFA
-// Referencia:
-// https://campusingenieriaytecnologia.ull.es/mod/assign/view.php?id=273855
+// Asignatura: Computabilidad y Algoritmia
+// Curso: 2º
+// Práctica 6: Simulación de autómatas finitos
 // Autor: Jorge Niebla Núñez
-// Contact: alu0101215457@ull.edu.es
-// Archivo actual: Cabecera clase Set .h */
+// Correo: alu0101215457@ull.edu.es
+// Fecha: 09/11/2022
+// Archivo transicion.h: Clase para las transiciones del nfa.
+// Contiene la declaracion de la clase Transicion.
 
 #ifndef TRANSI_H
 #define TRANSI_H
@@ -27,11 +27,10 @@ class Transicion {
   public:
     /** 
        * \brief Constructor principal de la transición
-       * \param fuente Puntero al estado del que viene
        * \param destino Puntero al estado que va
        * \param simbolo Simbolo que admite la transición
     */
-    Transicion(Estado* destino = nullptr, Simbolo simbolo = "~");
+    Transicion(Estado* destino = nullptr, Simbolo simbolo = "&");
 
     /** 
        * \brief Getter del destino

@@ -3,15 +3,13 @@
 // Grado en Ingeniería Informática
 // Asignatura: Computabilidad y Algoritmia
 // Curso: 2º
-// Práctica 3: Calculadora de lenguajes formales
+// Práctica 6: Simulación de autómatas finitos
 // Autor: Jorge Niebla Núñez
 // Correo: alu0101215457@ull.edu.es
-// Fecha: 16/11/2022
-// Archivo cya-P03-Calculator.cc: programa cliente.
-// Contiene la función main del proyecto que usa las clases Alfabeto, Cadena y Simbolo
-// para ejecutar las operaciones básicas sobre cadenas, longintud, inversa, 
-// calcular prefijos, sufijos y subcadenas leyendo la entrada de un archivo 
-// con simbolos y una cadena por linea o una cadena (que se dividiría en caracteres = simbolo)
+// Fecha: 09/11/2022
+// Archivo cya-P06-NFA.cc: Programa cliente.
+// Fichero que se encarga de leer la entrada, crear el automata
+// y procesar cadenas con los archivos dados.
 
 #include "../include/nfa.h"
 

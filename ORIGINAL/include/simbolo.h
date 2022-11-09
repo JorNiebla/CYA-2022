@@ -16,6 +16,9 @@
 
 #include <string>
 
+/** 
+  * \brief Alias para el tipo Simbolo que simplifica su utilización, idéntico a std::string
+*/
 using Simbolo = std::string;
 
 #endif

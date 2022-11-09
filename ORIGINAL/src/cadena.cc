@@ -58,6 +58,12 @@ Cadena::Cadena(std::vector<Simbolo> data) {
 
 Cadena::Cadena(Alfabeto alf, std::vector<Simbolo> data) {
   alf_ = alf;
+  for (Simbolo s : data) {
+    if (alf.getConjunto().find(s) == alf.getConjunto().end()){
+      data_ = std::vector<Simbolo>();
+      return;
+    }
+  }
   data_ = data;
 }
 
