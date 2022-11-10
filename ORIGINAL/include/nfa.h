@@ -1,14 +1,13 @@
-// Universidad de La Laguna
-// Escuela Superior de Ingeniería y Tecnología
-// Grado en Ingeniería Informática
-// Asignatura: Computabilidad y Algoritmia
-// Curso: 2º
-// Práctica 6: Simulación de autómatas finitos
-// Autor: Jorge Niebla Núñez
-// Correo: alu0101215457@ull.edu.es
-// Fecha: 09/11/2022
-// Archivo nfa.h: Clase para el nfa.
-// Contiene la declaracion de la clase NFA.
+/**
+ * @file nfa.h
+ * @author Jorge Niebla Núñez
+ * @brief Contiene la declaracion de la clase NFA.
+ * @version 1
+ * @date 2022-11-10
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 
 #ifndef NFA_H
 #define NFA_H

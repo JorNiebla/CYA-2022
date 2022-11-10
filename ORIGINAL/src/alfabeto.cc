@@ -1,3 +1,14 @@
+/**
+ * @file alfabeto.cc
+ * @author Jorge Niebla Núñez
+ * @brief Contiene todos los métodos de la clase Alfabeto declarados.
+ * @version 1
+ * @date 2022-11-10
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
+
 // Universidad de La Laguna
 // Escuela Superior de Ingeniería y Tecnología
 // Grado en Ingeniería Informática

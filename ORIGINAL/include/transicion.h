@@ -1,3 +1,14 @@
+/**
+ * @file transicion.h
+ * @author Jorge Niebla Núñez
+ * @brief Contiene la declaracion de la clase Transicion.
+ * @version 1
+ * @date 2022-11-10
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
+
 // Universidad de La Laguna
 // Escuela Superior de Ingeniería y Tecnología
 // Grado en Ingeniería Informática
