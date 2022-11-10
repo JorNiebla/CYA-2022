@@ -57,6 +57,13 @@ class NFA {
        * \param states Cola donde mete las transciones encontradas
     */
     void CheckEpsilon(Estado& q, std::queue<int>& states);
+
+
+    /** 
+       * \brief Comprueba que estado no son accesibles
+       * \return Un set con los id de los estados no accesibles
+    */
+    std::set<int> noaccedidos();
   };
 
 #endif

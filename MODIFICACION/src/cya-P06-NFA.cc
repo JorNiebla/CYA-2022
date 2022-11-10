@@ -49,6 +49,13 @@ int main(int argc, char **argv) {
       std::cout << "Rejected" << std::endl;
     }
   }
+  auto noaccedidos = automata.noaccedidos();
+  if (!noaccedidos.empty()) {
+    std::cout << "Los siguientes estados no son accesibles:" << std::endl;
+    for (int q : noaccedidos) {
+      std::cout << "Estado " << q << std::endl;
+    }
+  }
 
   return 0;
 }

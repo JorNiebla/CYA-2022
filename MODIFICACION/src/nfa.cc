@@ -50,6 +50,7 @@ NFA::NFA(const std::string& nfafile) {
       Simbolo s = data;
       std::getline(ss, data, ' ');
       int idto = std::stoi(data);
+      states_[idto].setAccesible(true);
       states_[id].AddTransition(&states_[idto], s);
     }
   }
@@ -111,4 +112,17 @@ void NFA::CheckEpsilon(Estado &q, std::queue<int> &states) {
       CheckEpsilon(*t.GetDest(), states);
     }
   }
+}
+
+std::set<int> NFA::noaccedidos() {
+
+  std::set<int> noAcc;
+
+  for (Estado q : states_) {
+    if (!q.GetAccesible()){
+      noAcc.insert(q.GetId());
+    }
+  }
+  
+  return noAcc;
 }
