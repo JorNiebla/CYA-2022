@@ -9,7 +9,6 @@
 // Fecha: 09/11/2022
 // Archivo estado.h: Clase estado para el nfa.
 // Contiene la declaracion de la clase Estado
-
 #ifndef ESTADO_H
 #define ESTADO_H
 
