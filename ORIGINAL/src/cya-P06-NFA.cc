@@ -24,17 +24,16 @@ int main(int argc, char **argv) {
     if (param == "--help") {
       std::cout 
       << "Para utilizar este programa se tiene que ejecutar de la siguiente forma:\n"
-      << "./p04_calculator code.cc codescheme.txt\n"
-      << "Siendo code.cc un fichero de código estándar de c++.\n"
-      << "Siendo codescheme.txt el fichero de texto donde imprimir la información\n"
-      << "analizada del fichero de entrada." << std::endl;
+      << "./p06_automata_simulator automata.fa input.txt\n"
+      << "Siendo automata.fa un fichero de un autómata.\n"
+      << "Siendo input.txt un fichero con las cadenas a analizar" << std::endl;
       return 0;
     }
   }
   if (argc != 3) {
     std::cout 
     << "No hubo la cantidad de parametros esperados, ejecuta el programa de la forma:\n"
-    << "./p04_calculator code.cc codescheme.txt\n" 
+    << "./p06_automata_simulator automata.fa input.txt\n" 
     << "Ejecuta con el parametro --help para más información." << std::endl;
     return 0;
   }
