@@ -41,17 +41,26 @@ NFA::NFA(const std::string& nfafile) {
     int id = std::stoi(data);
     std::getline(ss, data, ' ');
     bool final = std::stoi(data);
-    if (final) final_states_.insert(id);
+    if (final) final_states_.insert(&states_[id]);
     std::getline(ss, data, ' ');
     int ntran = std::stoi(data);
+
+
+    //COMPROBAMOS TAMBIEN SI ES UN DFA
+    std::set<Simbolo> ts;
 
     for (int i = 0; i < ntran; i++) {
       std::getline(ss, data, ' ');
       Simbolo s = data;
+      ts.insert(s);
       std::getline(ss, data, ' ');
       int idto = std::stoi(data);
       states_[id].AddTransition(&states_[idto], s);
     }
+
+    dfa_ = false;
+    if (alf_.getConjunto() == ts && ntran == alf_.getConjunto().size())
+      dfa_ = true;
   }
   nfainput.close();
 }
@@ -59,56 +68,83 @@ NFA::NFA(const std::string& nfafile) {
 bool NFA::ProcessInput(const std::string &input) {
   Cadena entrada(alf_, input);
 
-  std::queue<int> cola;
-  std::queue<int> temp;
+  std::set<Estado*> cola;
+  std::set<Estado*> temp;
   for (int i = 0; i < states_.size(); i++) {
     if (states_[i].GetId() == initial_state_->GetId()) {
-      cola.push(i);
+      cola.insert(&states_[i]);
       break;
     }
   }
   // Compruebo las epsilon transiciones del estado de arranque y meto los estados en la cola
-  CheckEpsilon(states_[cola.front()], cola);
-
+  for (auto q : cola) {
+    CheckEpsilon(q, cola);
+  }
   // Proceso la entrada simbolo a simbolo
   for (Simbolo s : entrada.getData()) {
     //Voy vaciando la cola de entrada, las transiciones que contengan el simbolo
     //de entrada son admitidas y sus destinos añadidos a una cola temporal.
-    while (!cola.empty()) {
-      for (Transicion t : states_[cola.front()].GetTransi()) {
+    for (Estado* q : cola) {
+      for (Transicion t : q->GetTransi()) {
         if (t.GetSim() == s) {
-          temp.push(t.GetDest()->GetId());
+          temp.insert(t.GetDest());
         }
       }
-      cola.pop();
     }
+    cola.clear();
     //Voy vaciando la cola temporal, buscando epsilon transiciones y metiendo
     //los nuevos estados en la cola de entrada.
-    while (!temp.empty()) {
-      cola.push(temp.front());
-      CheckEpsilon(states_[temp.front()], cola);
-      temp.pop();
+    for (Estado* q : temp) {
+      cola.insert(q);
+      CheckEpsilon(q, cola);
     }
+    temp.clear();
   }
 
   //Cuando se me acaban los simbolos de entrada miro la cola de entrada por si hay
   //algun estado de aceptación.
-  while (!cola.empty()) {
-    int id = states_[cola.front()].GetId();
-    if (final_states_.find(id) != final_states_.end()) {
+  for (Estado* q : cola) {
+    if (final_states_.find(q) != final_states_.end()) {
       return true;
     }
-    cola.pop();
   }
   return false;
 }
 
 
-void NFA::CheckEpsilon(Estado &q, std::queue<int> &states) {
-  for (Transicion t : q.GetTransi()) {
+void NFA::CheckEpsilon(Estado* &q, std::set<Estado*> &states) {
+  for (Transicion t : q->GetTransi()) {
     if (t.IsEpsilon()) {
-      states.push(t.GetDest()->GetId());
-      CheckEpsilon(*t.GetDest(), states);
+      Estado* dest = t.GetDest();
+      states.insert(dest);
+      CheckEpsilon(dest, states);
     }
   }
+}
+
+bool NFA::isDFA() {
+  return dfa_;
+}
+
+Gramatica NFA::ConvertToGrammar() {
+  if (!dfa_) {
+    throw "No es un dfa";
+  }
+  return Gramatica(*this);
+}
+
+Alfabeto NFA::getAlf() {
+  return alf_;
+}
+
+std::vector<Estado> NFA::getEstados() {
+  return states_;
+}
+
+Estado* NFA::getInicial() {
+  return initial_state_;
+}
+
+std::set<Estado*> NFA::getFinales() {
+  return final_states_;
 }

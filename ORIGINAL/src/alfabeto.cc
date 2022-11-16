@@ -51,3 +51,7 @@ Alfabeto Alfabeto::uni(Alfabeto alf) const {
 std::set<Simbolo> Alfabeto::getConjunto() const {
   return data_;
 }
+
+int Alfabeto::size() const {
+  return data_.size();
+}

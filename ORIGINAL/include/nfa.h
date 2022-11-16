@@ -17,19 +17,23 @@
 #include "cadena.h"
 #include "estado.h"
 #include "transicion.h"
+#include "gramatica.h"
 
 #include <string>
 #include <vector>
 #include <fstream>
 #include <sstream>
-#include <queue>
+#include <set>
+
+class Gramatica;
 
 class NFA {
   private:
-    Alfabeto alf_;
-    std::vector<Estado> states_;
-    Estado* initial_state_;
-    std::set<int> final_states_;
+   	bool dfa_;
+   	Alfabeto alf_;
+   	std::vector<Estado> states_;
+   	Estado* initial_state_;
+   	std::set<Estado*> final_states_;
 
   public:
     /** 
@@ -38,11 +42,9 @@ class NFA {
     */
     NFA (const std::string& nfafile);
 
-    /** 
-       * \brief Comprueba si una cadena es compatible con nuestro alfabeto
-       * \param stringtocheck Cadena que queremos comprobar
-    */
-    bool isStringValid(const std::string& stringtocheck) const;
+		bool isDFA();
+
+		Gramatica ConvertToGrammar();
     
     /** 
        * \brief Procesa toda una cadena
@@ -56,7 +58,15 @@ class NFA {
        * \param q Estada en el que buscas las epsilon transiciones
        * \param states Cola donde mete las transciones encontradas
     */
-    void CheckEpsilon(Estado& q, std::queue<int>& states);
+    void CheckEpsilon(Estado* &q, std::set<Estado*>& states);
+
+    Alfabeto getAlf();
+
+    std::vector<Estado> getEstados();
+
+    Estado* getInicial();
+
+    std::set<Estado*> getFinales();
   };
 
 #endif

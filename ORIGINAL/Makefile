@@ -1,11 +1,17 @@
-NFA: src/cya-P06-NFA.cc nfa.o cadena.o alfabeto.o estado.o transicion.o
+NFA: src/cya-P07-DFAtoGR.cc gramatica.o gsimbolo.o nfa.o cadena.o alfabeto.o estado.o transicion.o
 	mkdir -p bin
-	g++ -o bin/p06_automata_simulator obj/* src/cya-P06-NFA.cc -I.
+	g++ -o bin/p06_automata_simulator obj/* src/cya-P07-DFAtoGR.cc -I.
 
 all: NFA doc
 
-nfa.o: src/nfa.cc
+gramatica.o: src/gramatica.cc
 	mkdir -p obj
+	g++ -c src/gramatica.cc -o obj/gramatica.o
+
+gsimbolo.o: src/gsimbolo.cc
+	g++ -c src/gsimbolo.cc -o obj/gsimbolo.o
+
+nfa.o: src/nfa.cc
 	g++ -c src/nfa.cc -o obj/nfa.o
 
 cadena.o: src/cadena.cc

@@ -10,6 +10,7 @@
  * 
  */
 
+#include "../include/gramatica.h"
 #include "../include/nfa.h"
 
 #include <string>
@@ -38,17 +39,12 @@ int main(int argc, char **argv) {
   }
 
   NFA automata((std::string)(argv[1]));
+  std::cout << "Es un dfa " << automata.isDFA() << std::endl;
 
-  std::ifstream filein(argv[2]);
-  std::string cadena;
-  while (std::getline(filein,cadena)) {
-    std::cout << cadena << " --- ";
-    if (automata.ProcessInput(cadena)) {
-      std::cout << "Accepted" << std::endl;
-    } else {
-      std::cout << "Rejected" << std::endl;
-    }
-  }
+  Gramatica G = automata.ConvertToGrammar();
+
+  std::ofstream fileout(argv[2]);
+  fileout << G;
 
   return 0;
 }
