@@ -12,6 +12,7 @@
 
 #include "../include/gramatica.h"
 #include "../include/nfa.h"
+#include "../include/alfabeto.h"
 
 #include <string>
 #include <iostream>
@@ -38,10 +39,21 @@ int main(int argc, char **argv) {
     return 0;
   }
 
-  NFA automata((std::string)(argv[1]));
+  Alfabeto alf;
+  alf.insertar("0");
+  alf.insertar("1");
+  alf.insertar("2");
+  alf.insertar("3");
+  alf.insertar("4");
+  alf.insertar("5");
+  alf.insertar("6");
+  alf.insertar("7");
+  alf.insertar("8");
+  alf.insertar("9");
+  std::string cadena = argv[1];
+  Gramatica G(alf,cadena);
 
-  Gramatica G = automata.ConvertToGrammar();
-
+  std::cout << "AQUI" << std::endl;
   std::ofstream fileout(argv[2]);
   fileout << G;
 

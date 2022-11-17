@@ -12,7 +12,7 @@ Gramatica::Gramatica(NFA &dfa) {
 
   for (Estado q : dfa.getEstados()) {
     for (Transicion t : q.GetTransi()) {
-      GSnoterminales_[q.GetId()].addProd(std::make_pair(Cadena(GSterminales_,t.GetSim()),
+      GSnoterminales_[q.GetId()].addProd(std::make_pair(t.GetSim(),
                       &GSnoterminales_[t.GetDest()->GetId()]));
     }
   }
@@ -23,6 +23,18 @@ Gramatica::Gramatica(NFA &dfa) {
 
   GSarranque_ = &GSnoterminales_[dfa.getInicial()->GetId()];
 }
+
+Gramatica::Gramatica(Alfabeto alf, Cadena cadena) {
+  GSterminales_ = alf;
+  GSimbolo S("S");
+  GSnoterminales_.push_back(S);
+  for (Simbolo sim : GSterminales_.getConjunto()) {
+    GSnoterminales_[0].addProd(std::make_pair(Cadena(alf,sim),&GSnoterminales_[0]));
+  }
+  GSnoterminales_[0].addProd(std::make_pair(cadena,nullptr));
+  GSarranque_ = &GSnoterminales_[0];
+}
+
 
 std::ostream& operator<<(std::ostream& os, const Gramatica& G) {
   //1. Simbolos terminales
